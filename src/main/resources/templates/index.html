@@ -68,9 +68,16 @@ by https://zhengkai.blog.csdn.net
                       </div>
                     </div>
                     <div class="card-body">
+                      <el-input
+                              type="textarea"
+                              :rows="10"
+                              placeholder="等待AI回答中"
+                              v-model="formData.output">
+                      </el-input>
                       <!-- <textarea id="inputArea" placeholder="请输入表结构信息..." style="height: 250px;line-height : 10px;" v-model="formData.tableSql"></textarea> -->
+
                       <!-- input area-->
-                      <textarea id="inputArea" placeholder="请输入表结构信息..." style="height: 250px;line-height : 10px;" v-model="formData.tableSql"></textarea>
+<!--                      <textarea id="inputArea" placeholder="请输入表结构信息..." style="height: 250px;line-height : 10px;" v-model="formData.tableSql"></textarea>-->
                     </div>
                   </div>
 
@@ -91,11 +98,24 @@ by https://zhengkai.blog.csdn.net
                     <div class="card-body">
                       <!-- setting area-->
                       <el-form-item label="问题">
-                        <el-input v-model="formData.options.question" type="textarea" rows="5" resize='none' placeholder="请输入你的问题"></el-input>
+                        <el-input v-model="formData.options.question" type="textarea" rows="10" resize='none' placeholder="请输入你的问题"></el-input>
                       </el-form-item>
-                      <el-form-item label="拍照识图">
-                        <el-switch v-model="formData.options.isAutoImport">使用图片</el-switch>
-                        <el-upload>点击拍照上传</el-upload>
+                      <el-form-item label="图片识别">
+                        <el-switch v-model="formData.options.isUseImage">使用图片</el-switch>
+                        <el-upload
+                                class="upload-demo"
+                                action="${request.contextPath}/upload"
+                                multiple drag
+                                :limit="1"
+                                :on-exceed="handleExceed"
+                                :on-preview="handlePreview"
+                                :on-change="handleChange"
+                                :file-list="formData.options.fileList">
+                          <el-button size="small" type="primary">点击上传</el-button>
+                          <i class="el-icon-upload"></i>
+                          <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                          <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+                        </el-upload>
                         <!--                    <el-upload-->
                         <!--                            :action="baseUrl"-->
                         <!--                            ref="upload"-->

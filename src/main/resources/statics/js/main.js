@@ -31,12 +31,14 @@ const vm = new Vue({
 	el: '#rrapp',
 	data: {
 		formData: {
-			tableSql: "AI:xxxxxxxxxx<br>YOU:xxxxxxxx<br>",
+			output:"",
 			options: {
 				dataType: "sql",
 				question:"请输入你的问题",
 				isUseImage:"true",
-				engine: "spark"
+				engine: "spark",
+				fileList:[],
+				uploadFile:""
 			}
 		},
 		templates:[{}],
@@ -94,6 +96,26 @@ const vm = new Vue({
 		// 	//console.log(vm.historicalData);
 		// },
 		//request with formData to generate the code 根据参数生成代码
+		handleExceed : function(files, fileList) {
+			alert(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件`);
+		},
+		handlePreview : function(file) {
+			console.log("preview file successfully",file);
+			vm.formData.options.uploadFile=file;
+		},
+		handleChange : function(file) {
+			if(file.percentage===100){
+				console.log("change file successfully",file);
+				//if(file.response.data==='200'||file.response.data===200){
+					vm.formData.options.uploadFile=file.response.data;
+					vm.formData.options.isUseImage=true;
+					vm.formData.options.question="请帮我识别图片内容并解答该题目";
+				//}
+			}
+
+			// vm.formData.options.uploadFile=file.response.data;
+			// vm.formData.options.isUseImage=true;
+		},
 		generate : function(){
 			//get value from codemirror
 			//vm.formData.tableSql=$.inputArea.getValue();
@@ -102,6 +124,9 @@ const vm = new Vue({
 					error("生成失败");
 					return;
 				}
+				console.log(res.data);
+				vm.formData.output=res.data;
+				console.log(vm.formData.output);
 				// setAllCookie();
 				// //console.log(res.outputJson);
 				// vm.outputJson=res.outputJson;
