@@ -1,7 +1,7 @@
 server:
   port: 12666
   servlet:
-      context-path: /ai
+    context-path: /ai
   undertow:
     # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程
     # 不要设置过大，如果过大，启动项目会报错：打开文件数过多
@@ -15,34 +15,35 @@ server:
     # 是否分配的直接内存(NIO直接分配的堆外内存)
     direct-buffers: true
 spring:
-    application:
-        name: SpringBootAI
-    freemarker:
-        request-context-attribute: request
-        suffix: .html
-        content-type: text/html
-        enabled: true
-        cache: false
-        charset: UTF-8
-        allow-request-override: false
-        expose-request-attributes: true
-        expose-session-attributes: true
-        expose-spring-macro-helpers: true
-        template-loader-path: classpath:/templates/
-        settings:
-          number_format: 0.##
-    mvc:
-      static-path-pattern: /static/**
-    servlet:
-      multipart:
-        max-file-size: 10MB
-        max-request-size: 10MB
-    datasource:
-      type: com.alibaba.druid.pool.DruidDataSource
-      driverClassName: org.postgresql.Driver
-      url: jdbc:postgresql://127.0.0.1:5432/test?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
-      username: postgres
-      password: root123
+  application:
+    name: SpringBootAI
+  freemarker:
+    request-context-attribute: request
+    suffix: .html
+    content-type: text/html
+    enabled: true
+    cache: false
+    charset: UTF-8
+    allow-request-override: false
+    expose-request-attributes: true
+    expose-session-attributes: true
+    expose-spring-macro-helpers: true
+    template-loader-path: classpath:/templates/
+    settings:
+      number_format: 0.##
+  mvc:
+    static-path-pattern: /static/**
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:5432/test?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: postgres
+    password: root123
+    druid:
       initialSize: 5
       minIdle: 5
       maxActive: 20
@@ -53,7 +54,7 @@ spring:
       testWhileIdle: true
       testOnBorrow: false
       testOnReturn: false
-      filters: stat,wall,log4j
+      filters: stat,wall
       # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
       connectionProperties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
       # 配置DruidStatFilter
@@ -66,23 +67,36 @@ spring:
         enabled: true
         url-pattern: "/system/druid/*"
         # IP白名单(没有配置或者为空，则允许所有访问)
-        allow: localhost,127.0.0.1,192.168.*
+        allow: 127.0.0.1
         # IP黑名单 (存在共同时，deny优先于allow)
-        deny: 10.1.*
+        deny:
         #  禁用HTML页面上的“Reset All”功能
         reset-enable: false
         # 登录名
         login-username: admin
         # 登录密码
-        login-password: 123456
+        login-password: admin123
 OEM:
   version: 2024 Sep
   header: SQL转Java JPA、MYBATIS实现类代码生成平台
   keywords: sql转实体类,sql转DAO,SQL转service,SQL转JPA实现,SQL转MYBATIS实现
   title: Benny AI 教育平台
   slogan: 知识的力量，AI的魔法，让解题变得简单。
-  description: <p>SpringBootAI</p><p> powered by 星火AI+GPT4o</p>
+  description: <p>Tips:</p><p>1.拍照识别请在手机拍照后裁剪题目对应区域，避免把一整页都识别从而导致无效的提问。</p><p>2.AI回答需要时间，请耐心等候。</p>
   author: Zhengkai.blog.csdn.net
   copyright: Powered by Moshow郑锴 , Might the holy light be with you !
   outputStr: AI回答区
   inputStr: 用户提问区
+#CyberSecurity:请勿提交你的TOKEN信息，防止泄密
+ai:
+  spark:
+    appid: xxxxxx
+    apiSecret: xxxxxx
+    apiKey: xxxxxx
+  aliyun:
+    ocr:
+      AccessKeyId: xxxxxx
+      AccessKeySecret: xxxxxx
+      endpoint: ocr-api.cn-hangzhou.aliyuncs.com
+    qianwen:
+      ApiKey: xxxxxx

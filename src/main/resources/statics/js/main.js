@@ -7,7 +7,7 @@ $(function(){
 
 	//init input code area
 	// $.inputArea = CodeMirror.fromTextArea(document.getElementById("inputArea"), {
-	// 	mode: "text/plain", // SQL
+	// 	mode: "text/x-stex", // SQL
 	// 	theme: "idea",  // IDEA主题
 	// 	lineNumbers: true,   //显示行号
 	// 	smartIndent: true, // 自动缩进
@@ -23,10 +23,21 @@ $(function(){
 	// 	autoCloseBrackets: true// 自动补全括号
 	// });
 	// $.outputArea.setSize('auto','auto');
+	$.renderAiResult = function (aiResultStr) {
+		console.log('renderAiResult start')
+		$('#aiResult').text(aiResultStr);
+		// let aiResult = document.getElementById('aiResult');
+		// console.log('aiResult DOM got')
+		// // aiResult.textContent(aiResultStr);
+		// console.log('set textContent')
+		renderMathInElement( document.getElementById('aiResult'));
+		console.log('renderAiResult end')
+	}
 
 });
 
-
+// import { LaTeXJSComponent } from "//cdn.jsdelivr.net/npm/latex.js/dist/latex.mjs"
+// customElements.define("latex-js", LaTeXJSComponent)
 const vm = new Vue({
 	el: '#rrapp',
 	data: {
@@ -34,9 +45,9 @@ const vm = new Vue({
 			output:"",
 			options: {
 				dataType: "sql",
-				question:"请输入你的问题",
+				question:"已知a-b a - b = 2 ， \\frac { ( 1 - a ) ^ { 2 } } { b } - \\frac { ( 1 + b ) ^ { 2 } } { a } = 4 ， 求 a ^ { 3 } - b ^ { 3 } 的值",
 				isUseImage:"true",
-				engine: "spark",
+				engine: "spark3max",
 				fileList:[],
 				uploadFile:""
 			}
@@ -107,9 +118,9 @@ const vm = new Vue({
 			if(file.percentage===100){
 				console.log("change file successfully",file);
 				//if(file.response.data==='200'||file.response.data===200){
-					vm.formData.options.uploadFile=file.response.data;
-					vm.formData.options.isUseImage=true;
-					vm.formData.options.question="请帮我识别图片内容并解答该题目";
+				//vm.formData.options.uploadFile=file.response.data;
+				vm.formData.options.isUseImage=true;
+				vm.formData.options.question=file.response.data;
 				//}
 			}
 
@@ -119,14 +130,18 @@ const vm = new Vue({
 		generate : function(){
 			//get value from codemirror
 			//vm.formData.tableSql=$.inputArea.getValue();
+			alert("提问AI成功，等待结果中!");
+			vm.formData.options.fileList=[]
 			axios.post(basePath+"/generate",vm.formData.options).then(function(res){
 				if(res.code===500){
-					error("生成失败");
+					error("AI回答失败");
 					return;
 				}
 				console.log(res.data);
 				vm.formData.output=res.data;
 				console.log(vm.formData.output);
+
+				$.renderAiResult(vm.formData.output);
 				// setAllCookie();
 				// //console.log(res.outputJson);
 				// vm.outputJson=res.outputJson;
@@ -138,7 +153,7 @@ const vm = new Vue({
 				// $.outputArea.setSize('auto', 'auto');
 				// //add to historicalData
 				// vm.setHistoricalData(res.outputJson.tableName);
-				alert("生成成功");
+				alert("AI回答成功");
 			});
 		},
 		copy : function (){

@@ -1,5 +1,6 @@
 package com.softdev.system.service;
 
+import com.softdev.system.config.AiSparkConfig;
 import io.github.briqt.spark4j.SparkClient;
 import io.github.briqt.spark4j.constant.SparkApiVersion;
 import io.github.briqt.spark4j.listener.SparkConsoleListener;
@@ -21,19 +22,27 @@ import java.util.List;
  * @Author zhengkai.blog.csdn.net
  * **/
 public class SparkService {
+
+    @Autowired
+    AiSparkConfig aiSparkConfig;
+
     private SparkClient sparkClient=null;
-    {
-        sparkClient=new SparkClient();
-        // 设置认证信息
-        // 如果你得到401 Unauthorized 则请留意apiSecret和apiKey设置是否正确！！！！！！
-        sparkClient.appid="";
-        sparkClient.apiSecret="";
-        sparkClient.apiKey="";
+
+    private SparkClient getClient() {
+        if(sparkClient==null){
+            sparkClient=new SparkClient();
+            // 设置认证信息
+            // 如果你得到401 Unauthorized 则请留意apiSecret和apiKey设置是否正确！！！！！！
+            sparkClient.appid=aiSparkConfig.getAppId();
+            sparkClient.apiSecret=aiSparkConfig.getApiSecret();
+            sparkClient.apiKey=aiSparkConfig.getApiKey();
+        }
+        return sparkClient;
     }
     /*** AI生成问题的预设条件*/
     public static final String PRECONDITION = "你作为一名学生，你想要查询学习相关问题。" ;
 
-    public SparkRequest setSparkRequest(String content) {
+    public SparkRequest setSparkRequest(String content,SparkApiVersion sparkApiVersion) {
         // 消息列表，可以在此列表添加历史对话记录
         List<SparkMessage> messages = new ArrayList<>();
         messages.add(SparkMessage.systemContent(PRECONDITION));
@@ -47,15 +56,15 @@ public class SparkService {
                 // 结果随机性，取值越高随机性越强，即相同的问题得到的不同答案的可能性越高，非必传，取值为[0,1]，默认为0.5
                 .temperature(0.2)
                 // 指定请求版本
-                .apiVersion(SparkApiVersion.V3_5)
+                .apiVersion(sparkApiVersion)
                 .build();
     }
-    public String sendMesToAI_XingHuo(String content) {
+    public String sendMesToAI_XingHuo(String content,SparkApiVersion sparkApiVersion) {
         // 同步调用
-        SparkSyncChatResponse chatResponse = sparkClient.chatSync(setSparkRequest(content));
+        SparkSyncChatResponse chatResponse = getClient().chatSync(setSparkRequest(content,sparkApiVersion));
         String responseContent = chatResponse.getContent();
-        log.info("星火AI返回的结果{}", responseContent);
-        return responseContent;
+        log.info("星火AI返回的结果: {}", responseContent);
+        return responseContent.replaceAll("\\$","\\$\\$");
     }
 
     public void sendStreamtoAI_Xinghuo(String content){
@@ -76,11 +85,11 @@ public class SparkService {
                 // 核采样阈值。用于决定结果随机性,取值越高随机性越强即相同的问题得到的不同答案的可能性越高 非必传,取值为[0,1],默认为0.5
                 .temperature(0.2)
                 // 指定请求版本，默认使用3.0版本
-                .apiVersion(SparkApiVersion.V4_0)
+                .apiVersion(SparkApiVersion.V3_5)
                 .build();
 
         // 使用默认的控制台监听器，流式调用；
         // 实际使用时请继承SparkBaseListener自定义监听器实现
-        sparkClient.chatStream(sparkRequest, new SparkConsoleListener());
+        getClient().chatStream(sparkRequest, new SparkConsoleListener());
     }
 }

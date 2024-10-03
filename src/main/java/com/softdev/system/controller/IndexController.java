@@ -14,7 +14,7 @@ public class IndexController {
     SysConfigMapper sysConfigMapper;
 
     /**
-     * <a href="http://localhost:12666/api/author">view api</a>
+     * <a href="http://localhost:12666/ai/author">view api</a>
      */
     @GetMapping("/author")
     public Object author(){
@@ -22,7 +22,7 @@ public class IndexController {
     }
 
     /**
-     * <a href="http://localhost:12666/api/author2">view api</a>
+     * <a href="http://localhost:12666/ai/author2">view api</a>
      */
     @GetMapping("/author2")
     public Object author2(){
