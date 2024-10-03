@@ -13,7 +13,7 @@ SpringBootAI脚手架，基于SpringBoot+Druid+PgSQL+MyBatisPlus+FastJSON+Lombok
 - √ 阿里QianWen MAX
 - √ 阿里QianWen PLUS
 
-# 如何运行
+# 如何运行 - How to Run
 1.首先确保你是JDK17，推荐微软的MSJDK17
 2.使用Maven安装类库，国内推荐使用阿里云Maven镜像，`mvn clean compile`
 3.使用比较新版本的PostgreSQL，作者本地为V16
@@ -37,9 +37,10 @@ SpringBootAI脚手架，基于SpringBoot+Druid+PgSQL+MyBatisPlus+FastJSON+Lombok
 
 <img src="./my_ai_2.png">
 
-# 版本更新
+# 版本更新 Version Update
 
-| 日期         | 内容                      |
-|------------|-------------------------|
+| 日期         | 内容                                    |
+|------------|---------------------------------------|
+| 2024-10-04 | 接口防抖                                  |
 | 2024-10-03 | 阿里OCR+通义千问MAX/PLUS API+KaTeX.js渲染数学公式 |
-| 2024-09-16 | 初始化                     |
+| 2024-09-16 | 初始化                                   |

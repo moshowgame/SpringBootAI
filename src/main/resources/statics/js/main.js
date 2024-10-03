@@ -43,6 +43,7 @@ const vm = new Vue({
 	data: {
 		formData: {
 			output:"",
+			lastClick: 0,//API请求防抖函数
 			options: {
 				dataType: "sql",
 				question:"已知a-b a - b = 2 ， \\frac { ( 1 - a ) ^ { 2 } } { b } - \\frac { ( 1 + b ) ^ { 2 } } { a } = 4 ， 求 a ^ { 3 } - b ^ { 3 } 的值",
@@ -128,13 +129,22 @@ const vm = new Vue({
 			// vm.formData.options.isUseImage=true;
 		},
 		generate : function(){
+			//防抖处理
+			const now = new Date().getTime();
+			if (now - vm.formData.lastClick < 5000) {
+				error("提问速度过快，请五秒后重试!!!!!!");
+				return;
+			}
+			vm.formData.lastClick = now;
+			// 执行请求
+
 			//get value from codemirror
 			//vm.formData.tableSql=$.inputArea.getValue();
 			alert("提问AI成功，等待结果中!");
 			vm.formData.options.fileList=[]
 			axios.post(basePath+"/generate",vm.formData.options).then(function(res){
 				if(res.code===500){
-					error("AI回答失败");
+					error("AI回答失败:"+res.msg);
 					return;
 				}
 				console.log(res.data);
@@ -153,7 +163,7 @@ const vm = new Vue({
 				// $.outputArea.setSize('auto', 'auto');
 				// //add to historicalData
 				// vm.setHistoricalData(res.outputJson.tableName);
-				alert("AI回答成功");
+				alert("AI回答成功，久等了!");
 			});
 		},
 		copy : function (){
