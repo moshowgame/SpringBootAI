@@ -13,13 +13,19 @@ SpringBootAI脚手架，基于SpringBoot+Druid+PgSQL+MyBatisPlus+FastJSON+Lombok
 - √ 阿里QianWen MAX
 - √ 阿里QianWen PLUS
 
+# CDN 和 Local Static 双版本
+自由使用，按需使用
+```html
+<#include "/header-local-v2.html">
+<#include "/header-CDN-v2.html">
+```
 # 如何运行 - How to Run
-1.首先确保你是JDK17，推荐微软的MSJDK17
-2.使用Maven安装类库，国内推荐使用阿里云Maven镜像，`mvn clean compile`
-3.使用比较新版本的PostgreSQL，作者本地为V16
-4.项目已配置新版的SpringBoot2.6X，后续会升级
-5.导入`D:\Workspace\Project\MySpringBootAPI\src\main\resources\SQL\public.sql`到你的数据库去，新建一个叫TEST的空白数据库，编码UTF8
-6.找到Application，运行项目
+1. 首先确保你是JDK17，推荐微软的MSJDK17
+2. 用Maven安装类库，国内推荐使用阿里云Maven镜像，`mvn clean compile`
+3. 使用比较新版本的PostgreSQL，作者本地为V16
+4. 项目已配置新版的SpringBoot2.6X，后续会升级
+5. 导入`D:\Workspace\Project\MySpringBootAPI\src\main\resources\SQL\public.sql`到你的数据库去，新建一个叫TEST的空白数据库，编码UTF8
+6. 找到Application，运行项目
 
 # Useful Articles 
 - 如果你最近也在升级FastJson到FastJson2版本，而跟我一样也遇到了FastJsonHttpMessageConverter找不到类问题以及FastJsonConfig找不到问题，那么恭喜你，看完本文，安装完fastjson2、fastjson2-extension、fastjson2-extension-spring6这三个类库，你就可以成功使用新版FastJson2了。

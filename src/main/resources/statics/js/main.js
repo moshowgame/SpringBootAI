@@ -48,7 +48,7 @@ const vm = new Vue({
 				dataType: "sql",
 				question:"已知a-b a - b = 2 ， \\frac { ( 1 - a ) ^ { 2 } } { b } - \\frac { ( 1 + b ) ^ { 2 } } { a } = 4 ， 求 a ^ { 3 } - b ^ { 3 } 的值",
 				isUseImage:"true",
-				engine: "spark3max",
+				engine: "aliyunQianWenMax",
 				fileList:[],
 				uploadFile:""
 			}

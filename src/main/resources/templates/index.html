@@ -67,7 +67,7 @@ by https://zhengkai.blog.csdn.net
                         </button> -->
                       </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" >
                       <!--<el-input hidden=""
                               type="textarea"
                               :rows="10"
@@ -100,9 +100,17 @@ by https://zhengkai.blog.csdn.net
                     </div>
 
                     <div class="card-body">
-                      <!-- setting area-->
-                      <el-form-item label="输入问题">
-                        <el-input v-model="formData.options.question" type="textarea" rows="10" resize='none' placeholder="请输入你的问题"></el-input>
+                      <el-form-item label="AI引擎">
+                        <el-select v-model="formData.options.engine">
+                          <el-option value="aliyunQianWenMax" label="阿里通义千问Max"></el-option>
+                          <el-option value="aliyunQianWenPlus" label="阿里通义千问Plus"></el-option>
+                          <el-option value="spark3max" label="星火AI-3.5Max"></el-option>
+                          <el-option value="spark4ultra" label="星火AI-4.0Ultra"></el-option>
+                          <el-option value="gpt-4o" label="gpt-4o"></el-option>
+                          <el-option value="gpt-4o-mini" label="gpt-4o-mini(无效)"></el-option>
+                          <el-option value="gpt-3.5-turbo" label="gpt-3.5-turbo"></el-option>
+                          <el-option value="test" label="内部测试"></el-option>
+                        </el-select>
                       </el-form-item>
                       <el-form-item label="图片识别">
                         <!--<el-switch v-model="formData.options.isUseImage">使用图片</el-switch>-->
@@ -120,31 +128,13 @@ by https://zhengkai.blog.csdn.net
                           <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
                           <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
                         </el-upload>
-                        <!--                    <el-upload-->
-                        <!--                            :action="baseUrl"-->
-                        <!--                            ref="upload"-->
-                        <!--                            list-type="picture-card"-->
-                        <!--                            :auto-upload="false"-->
-                        <!--                            :on-change="onChange"-->
-                        <!--                            :on-remove="handleRemove"-->
-                        <!--                            :http-request="fileLists"-->
-                        <!--                            :limit="1">-->
-
-                        <!--                        <i slot="default" class="el-icon-plus"></i>-->
-                        <!--                    </el-upload>-->
                         <el-dialog >
                           <img width="100%" alt="">
                         </el-dialog>
                       </el-form-item>
-                      <el-form-item label="AI引擎">
-                        <el-select v-model="formData.options.engine">
-                          <el-option value="spark3max" label="星火AI-3.5Max"></el-option>
-                          <el-option value="spark4ultra" label="星火AI-4.0Ultra"></el-option>
-                          <el-option value="aliyunQianWenMax" label="阿里通义千问Max"></el-option>
-                          <el-option value="aliyunQianWenPlus" label="阿里通义千问Plus"></el-option>
-                          <el-option value="gpt4o" label="GPT4o(测试版)"></el-option>
-                          <el-option value="test" label="内部测试"></el-option>
-                        </el-select>
+                      <!-- setting area-->
+                      <el-form-item label="输入问题">
+                        <el-input v-model="formData.options.question" type="textarea" rows="10" resize='none' placeholder="请输入你的问题"></el-input>
                       </el-form-item>
                       <el-form-item label="操作">
                         <el-button type="primary" icon="el-icon-caret-right" @click="generate">提问</el-button>

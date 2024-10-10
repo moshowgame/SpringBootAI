@@ -90,13 +90,16 @@ OEM:
 #CyberSecurity:请勿提交你的TOKEN信息，防止泄密
 ai:
   spark:
-    appid: xxxxxx
-    apiSecret: xxxxxx
-    apiKey: xxxxxx
+    appid: xxxx
+    apiSecret: xxxx
+    apiKey: xxxx
   aliyun:
     ocr:
-      AccessKeyId: xxxxxx
-      AccessKeySecret: xxxxxx
-      endpoint: ocr-api.cn-hangzhou.aliyuncs.com
+      AccessKeyId: xxxx
+      AccessKeySecret: xxxx
+      endpoint: xxxx
     qianwen:
-      ApiKey: xxxxxx
+      ApiKey: xxxx
+  chatgpt:
+    hao:
+      token: xxxx

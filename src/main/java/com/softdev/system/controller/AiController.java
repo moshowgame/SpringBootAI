@@ -60,8 +60,20 @@ public class AiController {
         }else if("test".equals(requestInfo.getEngine())){
             //For TEST only
             return ReturnUtil.DATA(testStr());
-        }else if("gpt4o".equals(requestInfo.getEngine())){
+        }else if("gpt-3.5-turbo".equals(requestInfo.getEngine())){
+            //gpt-4o-mini
+            //gpt-3.5-turbo
             return ReturnUtil.DATA(chatGptService.callWithMessage(requestInfo.getQuestion(),"gpt-3.5-turbo").replaceAll("frac","\\\\frac").replaceAll("\\$","\\$\\$"));
+            //return ReturnUtil.ERROR("NOT SUPPORTED");
+        }else if("gpt-4o-mini".equals(requestInfo.getEngine())){
+            //gpt-4o-mini
+            //gpt-3.5-turbo
+            return ReturnUtil.DATA(chatGptService.callWithMessage(requestInfo.getQuestion(),"gpt-4o-mini").replaceAll("frac","\\\\frac").replaceAll("\\$","\\$\\$"));
+            //return ReturnUtil.ERROR("NOT SUPPORTED");
+        }else if("gpt-4o".equals(requestInfo.getEngine())){
+            //gpt-4o-mini
+            //gpt-3.5-turbo
+            return ReturnUtil.DATA(chatGptService.callWithMessage(requestInfo.getQuestion(),"gpt-4o").replaceAll("frac","\\\\frac").replaceAll("\\$","\\$\\$"));
             //return ReturnUtil.ERROR("NOT SUPPORTED");
         }else if ("aliyunQianWenMax".equals(requestInfo.getEngine())) {
             //通义千问MAX
