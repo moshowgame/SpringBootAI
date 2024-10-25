@@ -31,6 +31,7 @@ by https://zhengkai.blog.csdn.net
       <ul class="order-1 order-md-4 navbar-nav navbar-no-expand ml-auto">
         <li class="nav-item">
           <a href="https://github.com/moshowgame/SpringBootAI" target="_blank"><i class="fa fa-fw fa-star"></i>Github </a>
+          <a href="https://zhengkai.blog.csdn.net" target="_blank">CSDN</a>
         </li>
       </ul>
     </div>
@@ -98,19 +99,10 @@ by https://zhengkai.blog.csdn.net
                         </button> -->
                       </div>
                     </div>
-
                     <div class="card-body">
-                      <el-form-item label="AI引擎">
-                        <el-select v-model="formData.options.engine">
-                          <el-option value="aliyunQianWenMax" label="阿里通义千问Max"></el-option>
-                          <el-option value="aliyunQianWenPlus" label="阿里通义千问Plus"></el-option>
-                          <el-option value="spark3max" label="星火AI-3.5Max"></el-option>
-                          <el-option value="spark4ultra" label="星火AI-4.0Ultra"></el-option>
-                          <el-option value="gpt-4o" label="gpt-4o"></el-option>
-                          <el-option value="gpt-4o-mini" label="gpt-4o-mini(无效)"></el-option>
-                          <el-option value="gpt-3.5-turbo" label="gpt-3.5-turbo"></el-option>
-                          <el-option value="test" label="内部测试"></el-option>
-                        </el-select>
+                      <el-form-item label="输入问题">
+                        <!--rows="10" style="width: 400px;height: 200px;"-->
+                        <el-input v-model="formData.options.question" type="textarea" rows="10" style="width: 400px;" placeholder="请输入你的问题"></el-input>
                       </el-form-item>
                       <el-form-item label="图片识别">
                         <!--<el-switch v-model="formData.options.isUseImage">使用图片</el-switch>-->
@@ -132,10 +124,19 @@ by https://zhengkai.blog.csdn.net
                           <img width="100%" alt="">
                         </el-dialog>
                       </el-form-item>
-                      <!-- setting area-->
-                      <el-form-item label="输入问题">
-                        <el-input v-model="formData.options.question" type="textarea" rows="10" resize='none' placeholder="请输入你的问题"></el-input>
+                      <el-form-item label="AI引擎">
+                        <el-select v-model="formData.options.engine">
+                          <el-option value="aliyunQianWenMax" label="通义千问Max(⭐⭐⭐)"></el-option>
+                          <!--<el-option value="aliyunQianWenPlus" label="阿里通义千问Plus"></el-option>-->
+                          <el-option value="gpt-4o-mini" label="gpt-4o-mini(⭐⭐)"></el-option>
+                          <!--<el-option value="gpt-4o" label="gpt-4o"></el-option>
+                          <el-option value="gpt-3.5-turbo" label="gpt-3.5-turbo"></el-option>-->
+                          <el-option value="spark3max" label="星火AI-3.5Max(⭐)"></el-option>
+                          <!--<el-option value="spark4ultra" label="星火AI-4.0Ultra"></el-option>-->
+                          <!--<el-option value="test" label="内部测试"></el-option>-->
+                        </el-select>
                       </el-form-item>
+                      <!-- setting area-->
                       <el-form-item label="操作">
                         <el-button type="primary" icon="el-icon-caret-right" @click="generate">提问</el-button>
                         <el-button type="primary" icon="el-icon-document-copy" @click="copy" plain>复制</el-button>
@@ -170,7 +171,7 @@ by https://zhengkai.blog.csdn.net
       Version ${(value.version)!!}
     </div>
     <!-- Default to the left -->
-    <strong>${(value.copyright)!!} <a href="https://zhengkai.blog.csdn.net" target="_blank"><i class="fa fa-fw fa-thumbs-up"></i>zhengkai.blog.csdn.net</a> <a href="https://github.com/moshowgame/SpringBootCodeGenerator/blob/master/donate.png?raw=true" target="_blank"><i class="fa fa-fw fa-credit-card"></i>打赏</a>
+    <strong>${(value.copyright)!!}
   </footer>
 </div>
 <!-- ./wrapper -->

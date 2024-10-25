@@ -16,16 +16,20 @@ public class ChatGptService {
 
     public String callWithMessage(String text, String model){
         try{
-            HttpResponse response = HttpRequest.post("https://api.001hao.com/v1/chat/completions")
+            HttpResponse response = HttpRequest.post("https://api.wlai.vip/v1/chat/completions")
+//            HttpResponse response = HttpRequest.post("https://api.001hao.com/v1/chat/completions")
                     // 设置请求头
                     .header("Accept", "application/json")
-                    .header("Authorization", "Bearer " + aiChatGptConfig.getToken())
+                    .header("Authorization", "Bearer " + aiChatGptConfig.getTokenNew())
                     .header("Content-Type", "application/json")
                     // 设置请求体
                     .body("{\"model\": \"" + model + "\",\"messages\": [{\"role\": \"user\",\"content\": \"+" + text + "+\"}]}")
                     // 执行请求
                     .execute();
             String result=response.body();
+            if(result.contains("error")){
+                throw new Exception(result);
+            }
             log.error(result);
             JSONObject jsonObject=new JSONObject(result);
             JSONObject jsonObject2 = jsonObject.getJSONArray("choices").getJSONObject(0);

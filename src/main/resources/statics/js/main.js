@@ -59,55 +59,6 @@ const vm = new Vue({
 		outputJson: {}
 	},
 	methods: {
-		//set the template for output 选择页面输出的模板类型
-		// setOutputModel: function (event) {
-		// 	const targetModel = event.target.innerText.trim();
-		// 	console.log(targetModel);
-		// 	vm.currentSelect = targetModel ;
-		// 	if(vm.outputStr.length>30){
-		// 		vm.outputStr=vm.outputJson[targetModel];
-		// 		$.outputArea.setValue(vm.outputStr.trim());
-		// 		//console.log(vm.outputStr);
-		// 		$.outputArea.setSize('auto', 'auto');
-		// 	}
-		// },
-		//switch HistoricalData
-		// switchHistoricalData: function (event) {
-		// 	const tableName = event.target.innerText.trim();
-		// 	console.log(tableName);
-		// 	if (window.sessionStorage){
-		// 		const valueSession = sessionStorage.getItem(tableName);
-		// 		vm.outputJson = JSON.parse(valueSession);
-		// 		console.log(valueSession);
-		// 		alert("切换历史记录成功:"+tableName);
-		// 	}else{
-		// 		alert("浏览器不支持sessionStorage");
-		// 	}
-		// 	vm.outputStr=vm.outputJson[vm.currentSelect].trim();
-		// 	$.outputArea.setValue(vm.outputStr);
-		// 	//console.log(vm.outputStr);
-		// 	$.outputArea.setSize('auto', 'auto');
-		// },
-		// setHistoricalData : function (tableName){
-		// 	//add new table only
-		// 	if(vm.historicalData.indexOf(tableName)<0){
-		// 		vm.historicalData.unshift(tableName);
-		// 	}
-		// 	//remove last record , if more than N
-		// 	if(vm.historicalData.length>9){
-		// 		vm.historicalData.splice(9,1);
-		// 	}
-		// 	//get and set to session data
-		// 	const valueSession = sessionStorage.getItem(tableName);
-		// 	//remove if exists
-		// 	if(valueSession!==undefined && valueSession!=null){
-		// 		sessionStorage.removeItem(tableName);
-		// 	}
-		// 	//set data to session
-		// 	sessionStorage.setItem(tableName,JSON.stringify(vm.outputJson));
-		// 	//console.log(vm.historicalData);
-		// },
-		//request with formData to generate the code 根据参数生成代码
 		handleExceed : function(files, fileList) {
 			alert(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件`);
 		},
@@ -167,7 +118,7 @@ const vm = new Vue({
 			});
 		},
 		copy : function (){
-			navigator.clipboard.writeText(vm.outputStr.trim()).then(r => {alert("已复制")});
+			navigator.clipboard.writeText(vm.formData.output.trim()).then(r => {alert("已复制")});
 		}
 	},
 	created: function () {

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class AiChatGptConfig {
-    @Value("${ai.chatgpt.hao.token}")
-    String token;
+
+    @Value("${ai.chatgpt.wlai.token}")
+    String tokenNew;
 }

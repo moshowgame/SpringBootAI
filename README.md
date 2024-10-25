@@ -47,6 +47,8 @@ SpringBootAI脚手架，基于SpringBoot+Druid+PgSQL+MyBatisPlus+FastJSON+Lombok
 
 | 日期         | 内容                                    |
 |------------|---------------------------------------|
+| 2024-10-25 | OpenAi通用SSE封装                         |
+| 2024-10-15 | 优化本地静态文件                              |
 | 2024-10-04 | 接口防抖                                  |
 | 2024-10-03 | 阿里OCR+通义千问MAX/PLUS API+KaTeX.js渲染数学公式 |
 | 2024-09-16 | 初始化                                   |

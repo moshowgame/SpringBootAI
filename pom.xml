@@ -180,6 +180,14 @@
 			<artifactId>xunfei-spark4j</artifactId>
 			<version>1.3.0</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.theokanning.openai-gpt3-java/service -->
+		<dependency>
+			<groupId>com.theokanning.openai-gpt3-java</groupId>
+			<artifactId>service</artifactId>
+			<version>0.18.2</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

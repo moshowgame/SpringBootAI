@@ -82,7 +82,7 @@ OEM:
   keywords: sql转实体类,sql转DAO,SQL转service,SQL转JPA实现,SQL转MYBATIS实现
   title: Benny AI 教育平台
   slogan: 知识的力量，AI的魔法，让解题变得简单。
-  description: <p>Tips:</p><p>1.拍照识别请在手机拍照后裁剪题目对应区域，避免把一整页都识别从而导致无效的提问。</p><p>2.AI回答需要时间，请耐心等候。</p>
+  description: <p>Tips:</p><p>1.拍照识别请在手机拍照后裁剪题目对应区域，避免把无效文字区域都识别从而导致无效的提问。</p><p>2.AI回答需要时间，请耐心等候。GPT3/4/星火大概需要10+秒，阿里需要40+秒</p>
   author: Zhengkai.blog.csdn.net
   copyright: Powered by Moshow郑锴 , Might the holy light be with you !
   outputStr: AI回答区
@@ -90,16 +90,19 @@ OEM:
 #CyberSecurity:请勿提交你的TOKEN信息，防止泄密
 ai:
   spark:
-    appid: xxxx
-    apiSecret: xxxx
-    apiKey: xxxx
+    appid: xxxxxxxx
+    apiSecret: xxxxxxxx
+    apiKey: xxxxxxxx
   aliyun:
     ocr:
-      AccessKeyId: xxxx
-      AccessKeySecret: xxxx
-      endpoint: xxxx
+      AccessKeyId: xxxxxxxx
+      AccessKeySecret: xxxxxxxx
+      endpoint: ocr-api.cn-hangzhou.aliyuncs.com
     qianwen:
-      ApiKey: xxxx
+      ApiKey: xxxxxxxx
   chatgpt:
     hao:
-      token: xxxx
+      token: xxxxxxxx
+    wlai:
+      url: https://api.wlai.vip
+      token: xxxxxxxx
